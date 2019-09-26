@@ -19,11 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class Soal extends javax.swing.JFrame 
 {
-   String dataFoto ;
-   int dataIndex = 0;
-   Timer timer;
    Game dataGame;
-   int detik = 10;
+   String dataFoto;
+   Timer timer;
+   int detik = 3;
 
    
    private GameInterface game;
@@ -32,9 +31,16 @@ public class Soal extends javax.swing.JFrame
     { 
         initComponents();
      
+      if (Variabel.dataIndex == 13) {
+         JOptionPane.showMessageDialog(null, "Selamat anda menang ye", "Peringatan", JOptionPane.WARNING_MESSAGE);
+         System.exit(1);
+         this.dispose();
+       }
+        
       try {
          game = (GameInterface) Naming.lookup("rmi://localhost:1099/game");
        
+
       } catch (NotBoundException e) {
          System.out.println("Terjadi error : " + e.getMessage());
          System.exit(1);
@@ -45,29 +51,15 @@ public class Soal extends javax.swing.JFrame
          System.out.println("Terjadi error : " + e.getMessage());
          System.exit(1);
       }
-        
+      
+  
+      
         timer = new Timer();
         timer.schedule(new tampilkanWaktuMundur(), 0, 1000);
        
-      try {
-         btnA.setText("A. " + game.ambilSoalA(dataIndex));
-         btnB.setText("B. " + game.ambilSoalB(dataIndex));
-         btnC.setText("C. " + game.ambilSoalC(dataIndex));
-         btnD.setText("D. " + game.ambilSoalD(dataIndex));
-         
-         dataFoto = game.ambilFoto(dataIndex);
-         
-         int hitungLevel = dataIndex + 1;
-         lblLevel.setText(String.valueOf(hitungLevel));
-         
-         System.out.println(dataFoto);
+      coba();
       
-      
-      } catch (RemoteException e) {
-         System.err.println("Terjadi Error : " + e.getMessage());
-         System.exit(1);
-      }
-         fotoGame();
+       
     }
 
       class tampilkanWaktuMundur extends TimerTask
@@ -80,11 +72,13 @@ public class Soal extends javax.swing.JFrame
             detik--;
          } else {
             if (detik == 1) {
-               JOptionPane.showMessageDialog(null, "Waktu habis brow", "Peringatan", JOptionPane.ERROR_MESSAGE);
                Soal.this.setVisible(false);
+               JOptionPane.showMessageDialog(null, "Waktu habis brow", "Peringatan", JOptionPane.ERROR_MESSAGE);
                
                Menu menu = new Menu();
                menu.setVisible(true);
+               
+               resetGame();
             }
             
             detik = 0;
@@ -92,15 +86,7 @@ public class Soal extends javax.swing.JFrame
          }
       }
    }
-    
-   public void fotoGame()
-   {
-         ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource("foto/" + dataFoto))
-           .getImage().getScaledInstance(300, 264, Image.SCALE_SMOOTH));
-         
-         lblFoto.setIcon(icon);
-   }
-     
+   
     @SuppressWarnings("unchecked")
    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
    private void initComponents() {
@@ -113,6 +99,7 @@ public class Soal extends javax.swing.JFrame
       lblDetik = new javax.swing.JLabel();
       lblFoto = new javax.swing.JLabel();
       lblLevel = new javax.swing.JLabel();
+      jLabel1 = new javax.swing.JLabel();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,6 +107,7 @@ public class Soal extends javax.swing.JFrame
 
       btnD.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
       btnD.setText("Soal D");
+      btnD.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
       btnD.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnDActionPerformed(evt);
@@ -128,6 +116,7 @@ public class Soal extends javax.swing.JFrame
 
       btnA.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
       btnA.setText("Soal A");
+      btnA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
       btnA.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnAActionPerformed(evt);
@@ -136,6 +125,7 @@ public class Soal extends javax.swing.JFrame
 
       btnB.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
       btnB.setText("Soal B");
+      btnB.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
       btnB.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnBActionPerformed(evt);
@@ -144,6 +134,7 @@ public class Soal extends javax.swing.JFrame
 
       btnC.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
       btnC.setText("Soal C");
+      btnC.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
       btnC.addActionListener(new java.awt.event.ActionListener() {
          public void actionPerformed(java.awt.event.ActionEvent evt) {
             btnCActionPerformed(evt);
@@ -163,30 +154,40 @@ public class Soal extends javax.swing.JFrame
       lblLevel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
       lblLevel.setText("level");
 
+      jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+      jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+      jLabel1.setText("Aku Siapa ? ");
+
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
       jPanel1.setLayout(jPanel1Layout);
       jPanel1Layout.setHorizontalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel1Layout.createSequentialGroup()
-            .addGap(36, 36, 36)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(btnC, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(btnA, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(btnD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
-               .addComponent(btnB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-         .addGroup(jPanel1Layout.createSequentialGroup()
             .addGap(319, 319, 319)
-            .addComponent(lblDetik)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblLevel)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(jLabel1)
+                  .addGap(0, 0, Short.MAX_VALUE))
+               .addGroup(jPanel1Layout.createSequentialGroup()
+                  .addComponent(lblDetik)
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 203, Short.MAX_VALUE)
+                  .addComponent(lblLevel)))
             .addContainerGap())
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(188, 188, 188))
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                  .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                  .addGap(189, 189, 189))
+               .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(btnC, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(btnA, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                  .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                     .addComponent(btnD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                     .addComponent(btnB, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
+                  .addGap(17, 17, 17))))
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,9 +197,11 @@ public class Soal extends javax.swing.JFrame
                .addGroup(jPanel1Layout.createSequentialGroup()
                   .addGap(16, 16, 16)
                   .addComponent(lblLevel)))
-            .addGap(18, 18, 18)
+            .addGap(20, 20, 20)
+            .addComponent(jLabel1)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(43, 43, 43)
+            .addGap(18, 18, 18)
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                .addComponent(btnA, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                .addComponent(btnB, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -227,59 +230,149 @@ public class Soal extends javax.swing.JFrame
    }// </editor-fold>//GEN-END:initComponents
 
    private void btnAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAActionPerformed
-//         dataGame = new Game();
-      try {
-        
-         if (game.jawabA(0)) {
-//            this.setVisible(false);
-            timer.cancel();           
-//            timer = new Timer();
-//            timer.schedule(new tampilkanWaktuMundur(), 0, 1000);
+      try {         
+         if (game.jawabA(Variabel.dataIndex) == true) {
+            timer.cancel();       
+            
+            Variabel.dataIndex = Variabel.dataIndex + 1;
+            Soal soal = new Soal();
+            this.dispose();
+
+            soal.setVisible(true);            
          } else {
             timer.cancel();
-//            this.setVisible();
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Payah anda noob", "Peringatan", JOptionPane.ERROR_MESSAGE);
+            
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            resetGame();
          }
          
-//         System.out.println(dataGame.getDataIndex());
          
       } catch (RemoteException e) {
          System.err.println("Terjadi Error : " + e.getMessage());
          System.exit(1);
       }
-        
-        
    }//GEN-LAST:event_btnAActionPerformed
 
    private void btnBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBActionPerformed
-//      try {
-//         game.jawabB(0);
-//         
-//      } catch (RemoteException e) {
-//         System.err.println("Terjadi Error : " + e.getMessage());
-//         System.exit(1);
-//      }
+      try {         
+         if (game.jawabB(Variabel.dataIndex) == true) {
+            timer.cancel();       
+            
+            Variabel.dataIndex = Variabel.dataIndex + 1;
+            Soal soal = new Soal();
+            this.dispose();
+
+            soal.setVisible(true);            
+         } else {
+            timer.cancel();
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Payah anda noob", "Peringatan", JOptionPane.ERROR_MESSAGE);
+            
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            resetGame();
+         }
+         
+         
+      } catch (RemoteException e) {
+         System.err.println("Terjadi Error : " + e.getMessage());
+         System.exit(1);
+      }
    }//GEN-LAST:event_btnBActionPerformed
 
    private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
-//      try {
-//         game.jawabC(dataIndex);
-//      
-//      } catch (RemoteException e) {
-//         System.err.println("Terjadi Error : " + e.getMessage());
-//         System.exit(1);
-//      }
+      try {         
+         if (game.jawabC(Variabel.dataIndex) == true) {
+            timer.cancel();       
+            
+            Variabel.dataIndex = Variabel.dataIndex + 1;
+            Soal soal = new Soal();
+            this.dispose();
+
+            soal.setVisible(true);            
+         } else {
+            timer.cancel();
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Payah anda noob", "Peringatan", JOptionPane.ERROR_MESSAGE);
+            
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            resetGame();
+         }
+         
+         
+      } catch (RemoteException e) {
+         System.err.println("Terjadi Error : " + e.getMessage());
+         System.exit(1);
+      }
    }//GEN-LAST:event_btnCActionPerformed
 
    private void btnDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDActionPerformed
-//      try {
-//         game.jawabD(dataIndex);
-//      
-//      } catch (RemoteException e) {
-//         System.err.println("Terjadi Error : " + e.getMessage());
-//         System.exit(1);
-//      }
+      try {         
+         if (game.jawabD(Variabel.dataIndex) == true) {
+            timer.cancel();       
+            
+            Variabel.dataIndex = Variabel.dataIndex + 1;
+            Soal soal = new Soal();
+            this.dispose();
+
+            soal.setVisible(true);            
+         } else {
+            timer.cancel();
+            JOptionPane.showMessageDialog(null, "Payah anda noob", "Peringatan", JOptionPane.ERROR_MESSAGE);
+            this.dispose();
+            
+            Menu menu = new Menu();
+            menu.setVisible(true);
+            resetGame();
+         }
+         
+         
+      } catch (RemoteException e) {
+         System.err.println("Terjadi Error : " + e.getMessage());
+         System.exit(1);
+      }
    }//GEN-LAST:event_btnDActionPerformed
 
+
+   public void coba()
+   {
+      try {
+         btnA.setText("A. " + game.ambilSoalA(Variabel.dataIndex));
+         btnB.setText("B. " + game.ambilSoalB(Variabel.dataIndex));
+         btnC.setText("C. " + game.ambilSoalC(Variabel.dataIndex));
+         btnD.setText("D. " + game.ambilSoalD(Variabel.dataIndex));
+                  
+         dataFoto = game.ambilFoto(Variabel.dataIndex);
+         
+         int hitungLevel = Variabel.dataIndex + 1;
+         lblLevel.setText(String.valueOf(hitungLevel));
+               
+         fotoGame(dataFoto);
+      
+      } catch (RemoteException e) {
+         System.err.println("Terjadi Error : " + e.getMessage());
+         System.exit(1);
+      }
+   }
+   
+   public void fotoGame(String data)
+   {
+         ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource("foto/" + data))
+           .getImage().getScaledInstance(300, 264, Image.SCALE_SMOOTH));
+         
+         lblFoto.setIcon(icon);
+   }
+   
+   
+   public void resetGame()
+   {
+      Variabel.dataIndex = 0;
+   }
+   
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -293,6 +386,7 @@ public class Soal extends javax.swing.JFrame
    private javax.swing.JButton btnB;
    private javax.swing.JButton btnC;
    private javax.swing.JButton btnD;
+   private javax.swing.JLabel jLabel1;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JLabel lblDetik;
    private javax.swing.JLabel lblFoto;

@@ -12,7 +12,6 @@ import java.rmi.RemoteException;
  * @author gokpraz
  */
 public interface GameInterface extends Remote {
-   
    public String ambilSoalA(int index) throws RemoteException;
    public String ambilSoalB(int index) throws RemoteException;
    public String ambilSoalC(int index) throws RemoteException;

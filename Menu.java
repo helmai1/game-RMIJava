@@ -2,6 +2,7 @@ package GameRMI;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,7 +22,6 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        fotoMenu();
     }
 
     /**
@@ -39,13 +39,12 @@ public class Menu extends javax.swing.JFrame {
       jButton1 = new javax.swing.JButton();
       jLabel2 = new javax.swing.JLabel();
       jLabel3 = new javax.swing.JLabel();
-      lblFoto = new javax.swing.JLabel();
 
       setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
       jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-      jLabel1.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+      jLabel1.setFont(new java.awt.Font("Dialog", 1, 53)); // NOI18N
       jLabel1.setForeground(new java.awt.Color(0, 0, 0));
       jLabel1.setText("SIAPA SAYA?");
 
@@ -59,51 +58,43 @@ public class Menu extends javax.swing.JFrame {
       });
 
       jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-      jLabel2.setText("CREATED BY AGUS PRASETYO & HELMI SISWO EFFENDI");
+      jLabel2.setText("Created By Agus Prasetyo & Helmi Siswo Effendi");
 
       jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
       jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-      jLabel3.setText("MANA SAYA TAU, SAYA KAN ZAKI");
-
-      lblFoto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/GameRMI/foto-menu.png"))); // NOI18N
-      lblFoto.setPreferredSize(new java.awt.Dimension(200, 169));
+      jLabel3.setText("Mana saya tau, kan belom main");
 
       javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
       jPanel2.setLayout(jPanel2Layout);
       jPanel2Layout.setHorizontalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-            .addContainerGap(46, Short.MAX_VALUE)
+            .addContainerGap(49, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-               .addComponent(jLabel2)
-               .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                  .addComponent(jLabel3)
-                  .addComponent(jLabel1)))
+               .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
+               .addComponent(jLabel3))
             .addGap(40, 40, 40))
          .addGroup(jPanel2Layout.createSequentialGroup()
+            .addGap(19, 19, 19)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+               .addComponent(jLabel1)
                .addGroup(jPanel2Layout.createSequentialGroup()
-                  .addGap(98, 98, 98)
-                  .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-               .addGroup(jPanel2Layout.createSequentialGroup()
-                  .addGap(62, 62, 62)
-                  .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                  .addGap(22, 22, 22)
+                  .addComponent(jLabel2)))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
       );
       jPanel2Layout.setVerticalGroup(
          jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel2Layout.createSequentialGroup()
-            .addGap(24, 24, 24)
+            .addGap(25, 25, 25)
             .addComponent(jLabel1)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel3)
             .addGap(18, 18, 18)
-            .addComponent(lblFoto, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(28, 28, 28)
+            .addComponent(jLabel3)
+            .addGap(57, 57, 57)
             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(29, 29, 29)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
             .addComponent(jLabel2)
-            .addContainerGap(29, Short.MAX_VALUE))
+            .addGap(41, 41, 41))
       );
 
       javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -112,7 +103,7 @@ public class Menu extends javax.swing.JFrame {
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
          .addGroup(jPanel1Layout.createSequentialGroup()
             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 0, 0))
       );
       jPanel1Layout.setVerticalGroup(
          jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,7 +130,9 @@ public class Menu extends javax.swing.JFrame {
    }// </editor-fold>//GEN-END:initComponents
 
    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      JOptionPane.showMessageDialog(null, "Dilarang emosi ketika memainkan game ini", "Peringatan", JOptionPane.WARNING_MESSAGE);
       this.setVisible(false);
+
       Soal soal = new Soal();
       soal.setVisible(true);
    }//GEN-LAST:event_jButton1ActionPerformed
@@ -179,14 +172,6 @@ public class Menu extends javax.swing.JFrame {
             }
         });
     }
-
-    public void fotoMenu()
-    {
-       ImageIcon icon = new ImageIcon(new ImageIcon(getClass().getResource("foto-menu.png"))
-        .getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH));
-         
-       lblFoto.setIcon(icon);
-    }
     
    // Variables declaration - do not modify//GEN-BEGIN:variables
    private javax.swing.JButton jButton1;
@@ -195,6 +180,5 @@ public class Menu extends javax.swing.JFrame {
    private javax.swing.JLabel jLabel3;
    private javax.swing.JPanel jPanel1;
    private javax.swing.JPanel jPanel2;
-   private javax.swing.JLabel lblFoto;
    // End of variables declaration//GEN-END:variables
 }
