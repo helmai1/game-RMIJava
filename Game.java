@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GameRMI;
+package kuis_rmi;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 /**
@@ -12,12 +12,12 @@ import java.rmi.server.UnicastRemoteObject;
  */
 public class Game extends UnicastRemoteObject implements GameInterface 
 {   
-   private String[] foto = {"zaki.png", "renaldy.PNG" , "agusta2.png" , "agus.PNG", "dany2.PNG"       , "dhimas.PNG", "dicky y.PNG", "gran.PNG", "helmi.PNG", "pres.PNG", "renaldy2.PNG", "son2.png", "wahyu.PNG"};
-   private String[] jawaban = {"Zaki"  ,"Renaldy"     , "Agusta"      , "Agus"    , "Dany"            , "Dhimas"  , "Dicky"     , "Grandis"    , "Helmi"   , "Pres"     , "Renaldy" , "Son"         , "Wahyu"};
-   private String[] soalA = {"Dicky"   ,"Renaldy"     , "Wahyu"      , "Helmi"   , "Agusta"          , "Dany"  , "Dicky"     , "Agusta"     , "Wahyu"   , "Ody"      , "Renaldy"     , "Ody"         , "Wahyu"};
-   private String[] soalB = {"Grandis" ,"Dimas"       , "Odi"         , "Grandis" , "Dany"            , "Dhimas"  , "Zaki"      , "Helmi"      , "Helmi"   , "Pres"     , "Zaki"    , "Son"        , "Greg"}; 
-   private String[] soalC = {"Odi"     ,"Agus"        , "Agusta"        , "Son"     , "Helmi"           , "Dicky"  , "Dimas"     , "Grandis"    , "Agus"    , "Zaki"     , "Wahyu"   , "Grandis"     , "Zaki"};
-   private String[] soalD = {"Zaki"    ,"Agusta"      , "Dany"        , "Agus"    , "Agusta"          , "Ody"   ,"Wahyu"      , "Ody"        , "Grandis" , "Son"      , "Helmi"   , "Zaki"        , "Agus" };
+   private String[] foto = {"wahyu2.jpg","zaki.png", "renaldy.PNG" , "agusta2.png" , "agus.PNG", "dany2.PNG"       , "dhimas.PNG", "dicky y.PNG", "gran.PNG", "helmi.PNG", "pres.PNG", "renaldy2.PNG", "son2.png", "wahyu.PNG"};
+   private String[] jawaban = {"Wahyu"  ,"Zaki"  ,"Renaldy"     , "Agusta"      , "Agus"    , "Dany"            , "Dhimas"  , "Dicky"     , "Grandis"    , "Helmi"   , "Pres"     , "Renaldy" , "Son"         , "Wahyu"};
+   private String[] soalA = {"Odi"  ,"Dicky"   ,"Renaldy"     , "Wahyu"      , "Helmi"   , "Agusta"          , "Dany"  , "Dicky"     , "Agusta"     , "Wahyu"   , "Ody"      , "Renaldy"     , "Ody"         , "Wahyu"};
+   private String[] soalB = {"Renaldy"  ,"Grandis" ,"Dimas"       , "Odi"         , "Grandis" , "Dany"            , "Dhimas"  , "Zaki"      , "Helmi"      , "Helmi"   , "Pres"     , "Zaki"    , "Son"        , "Greg"}; 
+   private String[] soalC = {"Wahyu"    ,"Odi"     ,"Agus"        , "Agusta"        , "Son"     , "Helmi"           , "Dicky"  , "Dimas"     , "Grandis"    , "Agus"    , "Zaki"     , "Wahyu"   , "Grandis"     , "Zaki"};
+   private String[] soalD = {"Zaki"     ,"Zaki"    ,"Agusta"      , "Dany"        , "Agus"    , "Agusta"          , "Ody"   ,"Wahyu"      , "Ody"        , "Grandis" , "Son"      , "Helmi"   , "Zaki"        , "Agus" };
    
    public Game() throws RemoteException
    {

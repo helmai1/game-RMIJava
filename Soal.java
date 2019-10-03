@@ -1,6 +1,5 @@
-package GameRMI;
+package kuis_rmi;
 
-import Coba.CobaTimer;
 import java.awt.Image;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
@@ -31,7 +30,7 @@ public class Soal extends javax.swing.JFrame
     { 
         initComponents();
      
-      if (Variabel.dataIndex == 13) {
+      if (Variabel.dataIndex == 14) {
          JOptionPane.showMessageDialog(null, "Selamat anda menang ye", "Peringatan", JOptionPane.WARNING_MESSAGE);
          System.exit(1);
          this.dispose();

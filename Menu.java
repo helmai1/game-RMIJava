@@ -1,4 +1,4 @@
-package GameRMI;
+package kuis_rmi;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
